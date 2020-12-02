@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="section_subcategory">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-12 col-12">
+                <div class="row">
+                    {% for post in post_data %}
+                    <div class="col-sm-4 col-12">
+                        <div class="img_content">
+                            <a href="{% url 'news' %}"><img src="{{ post.main_image.url }}" alt="Sub Category Image"
+                                    class="img-fluid"></a>
+                            <p>{{ post.post_title }}</p>
+                            <span class="d-block">{{ post.author }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-12"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}

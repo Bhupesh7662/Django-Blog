@@ -1,0 +1,108 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Post</h2>
+        </div>
+        <!-- Basic Validation -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Add Post</h2>
+                    </div>
+                    <div class="body">
+                        <form id="form_validation" method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group form-float">
+                                <select class="form-control show-tick" name="category_id">
+                                    <option value="">Please select category</option>
+                                    {% for category in categories %}
+
+                                    {% if category.id == post_data.category_id %}
+                                    <option value="{{ category_id }}" selected>{{ category.category_name }}</option>
+                                    {% else %}
+                                    <option value="{{ category_id }}">{{ category.category_name }}</option>
+                                    {% endif %}
+
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ post_data.post_title }}"
+                                        name="post_title" required>
+                                    <label class="form-label">Post Title</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ post_data.short_desc }}"
+                                        name="short_desc" required>
+                                    <label class="form-label">Short Desc</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <textarea name="long_desc" id="description"
+                                        class="form-control">{{ post_data.long_desc }}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" value="{{ post_data.author }}" name="author"
+                                        required>
+                                    <label class="form-label">Author</label>
+                                </div>
+                            <!-- </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="file" class="form-control" value="{{ post_data.main_image.url }}"
+                                        name="main_image">
+                                    <label class="form-label">Main image</label>
+                                </div>
+                            </div> -->
+                            <!-- <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="date" class="form-control" value="{{ post_data.post_date }}"
+                                        name="post_date">
+                                    <label class="form-label">Post Date</label>
+                                </div>
+                            </div> -->
+                            <br>
+                            <div class="form-group">
+                                {% if post_data.post_status == "0" %}
+                                <input type="radio" name="post_status" id="active" class="with-gap" value="0" checked
+                                    required>
+                                <label for="active">Active</label>
+                                <input type="radio" name="post_status" id="inactive" class="with-gap" value="1"
+                                    required>
+                                <label for="inactive" class="m-l-20">Inactive</label>
+                                {% endif %}
+
+                                {% if post_data.post_status == "1" %}
+                                <input type="radio" name="post_status" id="active" class="with-gap" value="0" required>
+                                <label for="active">Active</label>
+                                <input type="radio" name="post_status" id="inactive" class="with-gap" value="1" required
+                                    checked>
+                                <label for="inactive" class="m-l-20">Inactive</label>
+                                {% endif %}
+                            </div>
+
+                            <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                            <a href="{% url 'add_post' %}" class="btn btn-default waves-effect pull-right"
+                                type="submit">CANCEL</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Basic Validation -->
+
+    </div>
+</section>
+{% endblock %}

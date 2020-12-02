@@ -1,0 +1,88 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>Post</h2>
+        </div>
+        <!-- Basic Validation -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Add Post</h2>
+                    </div>
+                    <div class="body">
+                        <form id="form_validation" method="POST" action="{% url 'add_post' %}"
+                            enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group form-float">
+                                <select class="form-control show-tick" name="category_id" required>
+                                    <option value="">Please select category</option>
+                                    {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="post_title" id="post_title" required>
+                                    <label class="form-label">Post Title</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" name="short_desc" id="short_desc" required>
+                                    <label class="form-label">Short Description</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label class="">Long Description</label>
+                                    <textarea name="long_desc" id="description" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line"><hr>
+                                    <input type="text" class="form-control" name="author" id="author" required>
+                                    <label class="form-label">Author</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-float" text-align="pull-right">
+                                <div class="form-line">
+                                    <label class="form-label">Main image</label>
+                                    <input type="file" class="form-control" width=150 height="300" name="main_image"
+                                        required />
+                                    <img id="blah" src="#" alt="" class="img-fluid" />
+                                </div>
+                            </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="date" class="form-control" name="post_date" required>
+                                    <label class="form-label">Post Date</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="radio" name="post_status" id="active" class="with-gap" value="0" checked
+                                    required>
+                                <label for="active">Active</label>
+                                <input type="radio" name="post_status" id="inactive" class="with-gap" value="1"
+                                    required>
+                                <label for="inactive" class="m-l-20">Inactive</label>
+                            </div>
+
+                            <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
+                            <a href="{% url 'add_post' %}" class="btn btn-default waves-effect pull-right"
+                                type="submit">CANCEL</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Basic Validation -->
+    </div>
+</section>
+{% endblock %}

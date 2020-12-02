@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="top-content">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-6 col-sm-12 col-12">
+                <div class="img_content">
+                    <a href="#"><img src="{% static 'img/fashion/Fashion-1.jpg' %}" alt="Blog_image-1"
+                            class="img-fluid main_img"></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-12">
+                <div class="row no-gutters">
+                    {% for post in post_data %}
+                    <div class="col-sm-6 col-12">
+                        <div class="img_content">
+                            <a href="news/{{ post.post_slug }}"><img src="{{ post.main_image.url }}" width="100%"
+                                    alt="Side_image-1" class="img-fluid main_img"></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="section-middle">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-12">
+                <br>
+                {% for category in categories %}
+                <div class="container">
+                    <br>
+                    <ul class="nav nav-tabs tabs-marker tabs-dark bg-dark" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" id="home">{{ category.category_name }}<span class="marker"></span></a>
+                        </li>
+                    </ul>
+                    <br>
+                    <div class="row">
+                        {% for post in category.get_posts %}
+                        <div class="col-sm-6 col-12 my-2">
+                            <div class="row">
+                                <div class="col-sm-6 col-12">
+                                    <div class="image_content">
+                                        <a href="news/{{ post.post_slug }}"><img src="{{ post.main_image.url }}"
+                                                alt="Fashion_image-1" class="img-fluid"></a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <a href="news/{{ post.post_slug }}">
+                                        <p class="font-10">{{ post.post_title }}</p>
+                                    </a>
+                                    <span class="d-block">By : {{ post.author }} - {{ post.post_date }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- <div class="col-md-4 col-12">
+            <ul class="nav nav-tabs tabs-marker tabs-dark bg-dark mt-5" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" id="home">Most Popular<span class="marker"></span></a>
+                </li>
+            </ul><br>
+            <div class="row">
+                <div class="col-sm-6 col-12">
+                    <div class="img_content">
+                        <img src="{% static 'img/Worls_news/world_news-main-1.jpg' %}" alt="world_news-main-1"
+                            class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <p class="font-10">Key Investment Risks in a Post COVID-19 World</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-12 mt-1">
+                    <div class="img_content">
+                        <img src="{% static 'img/Worls_news/world_news-small-1.jpg' %}" alt="world_news-small-1"
+                            class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <p class="font-10">Key Investment Risks in a Post COVID-19 World</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-12 mt-1">
+                    <div class="img_content">
+                        <img src="{% static 'img/Worls_news/world_news-small-2.jpg' %}" alt="world_news-small-1"
+                            class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <p class="font-10">Key Investment Risks in a Post COVID-19 World</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-12 mt-1">
+                    <div class="img_content">
+                        <img src="{% static 'img/Worls_news/world_news-small-3.jpg' %}" alt="world_news-small-1"
+                            class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <p class="font-10">Key Investment Risks in a Post COVID-19 World</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-12 mt-1">
+                    <div class="img_content">
+                        <img src="{% static 'img/Worls_news/world_news-small-1.jpg' %}" alt="world_news-small-1"
+                            class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-12">
+                    <p class="font-10">Key Investment Risks in a Post COVID-19 World</p>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>
+{% endblock %}

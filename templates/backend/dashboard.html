@@ -1,0 +1,67 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <!-- Counter Examples -->
+        <div class="block-header">
+            <h2>
+                Dashboard
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box-4 hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons col-red">category</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Categories</div>
+                        <div class="number count-to" data-from="0" data-to="{{ category }}" data-speed="1000"
+                            data-fresh-interval="20">{{ category }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box-4 hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons col-indigo">face</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">NEW MEMBERS</div>
+                        <div class="number count-to" data-from="0" data-to="{{ users }}" data-speed="1000"
+                            data-fresh-interval="20">257</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box-4 hover-zoom-effect">
+                    <div class="icon">
+                        <i class="material-icons col-purple">bookmark</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Posts</div>
+                        <div class="number count-to" data-from="0" data-to="{{ posts }}" data-speed="1000"
+                            data-fresh-interval="20">{{ posts }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box-4 hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons col-deep-purple">favorite</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Contacts</div>
+                        <div class="number count-to" data-from="0" data-to="{{ contacts }}" data-speed="1500"
+                            data-fresh-interval="20">{{ contacts}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- #END# Counter Examples -->
+
+    </div>
+</section>
+{% endblock %}

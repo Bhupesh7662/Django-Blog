@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block head_title %}{% endblock %}</title>
+  <link rel="icon" href="{% static 'favicon/favilogo_3.png' %}" type="image/x-icon">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  {% block extra_head %}
+  {% endblock %}
+</head>
+
+<body>
+  <div class="container content">
+    {% if messages %}
+    <div>
+      <strong>Messages:</strong>
+      <ul class="navbar-nav">
+        {% for message in messages %}
+        <li class="nav-item">{{message}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="py-5">
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <li class="nav-item">
+            <a href="{% url 'Index' %}" class="btn btn-outline-dark">Home</a>
+          <a href="{% url 'account_email' %}" class="btn btn-outline-dark">Change E-mail</a>
+          <a href="{% url 'account_logout' %}" class="btn btn-outline-dark">Sign Out</a>
+        </li>
+        {% else %}
+        <li class="nav-item text-center">
+          <a href="{% url 'Index' %}" class="btn btn-outline-dark">Home</a>
+          <a href="{% url 'account_login' %}" class="btn btn-outline-dark">Sign In</a>
+          <a href="{% url 'account_signup' %}" class="btn btn-outline-dark">Sign Up</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  {% block content %}
+  {% endblock %}
+
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

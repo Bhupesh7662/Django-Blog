@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="blog_details-long">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-12">
+                {% for post in post_data %}
+                <div class="big_post mt-4" style="border-bottom: 1px solid #000;">
+                    <h6 class="font-weight-inherit">{{ post.category.category_name }}</h6>
+                    <br>
+
+                    <h5>{{ post.post_title }}</h5>
+                    <span class="d-block">By : {{ post.author }} - {{ post.post_date }}</span><br>
+                    <div class="img_content">
+                        <img src="{{ post.main_image.url }}" alt="Post_image" class="img-fluid">
+                    </div><br>
+                    <div class="full_description">
+                        <div>{{ post.long_desc|safe }}</div>
+                    </div>
+                    <br><br>
+                    <h6>Tags: </h6><br><br>
+                </div>
+                {% endfor %}
+                <div class="page-header">
+                    <h4 class="reviews">Leave your comment</h4>
+                </div>
+                <div class="comment-tabs">
+                    <ul class="nav nav-tabs px-2 text-center" role="tablist">
+                        <li class="active text-center"><a href="#comments" role="tab" data-toggle="tab">
+                                <h4 class="reviews btn btn-outline-dark">Comments</h4>
+                            </a>
+                        </li>&nbsp;
+                        <li><a href="#add-comment" role="tab" data-toggle="tab">
+                                <h4 class="reviews btn btn-outline-dark">Add comment</h4>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="comments">
+                            <ul class="media-list">
+                                <li class="media">
+                                    <div class="media-body">
+
+                                        {% for comment in comments %}
+                                        <div class="well well-lg">
+                                            <h6 class="media-heading text-uppercase reviews">{{ comment.name}} </h6>
+                                            <p class="media-comment">{{ comment.email }}</p>
+                                            <p class="media-comment">{{ comment.comment_desc }}</p>
+                                            <hr>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="add-comment">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                {% if request.user.is_authenticated %}
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" name="name" placeholder="Username"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="email" class="form-control" name="email" placeholder="Email"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <textarea name="comment_desc" class="form-control" placeholder="Add Comment"
+                                            required></textarea>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Comment" class="btn btn-outline-dark">
+                                {% else %}
+                                <a href="{% url 'account_login' %}" class="btn btn-outline-dark mr-1">Sign to
+                                    comment</a>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-12">
+                <ul class="nav nav-tabs tabs-marker tabs-dark bg-dark mt-5" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="home" role="tab" aria-controls="home" aria-selected="true">Most
+                            Popular<span class="marker"></span></a>
+                    </li>
+                </ul><br>
+                <div class="category">
+                    {% for category in categories %}
+                    <a href="#">
+                        <p>{{ category.category_name }}</p>
+                    </a>
+                    {% endfor %}
+                </div>
+                <br>
+                <ul class="nav nav-tabs tabs-marker tabs-dark bg-dark mt-5" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="home" role="tab" aria-controls="home" aria-selected="true">Reasearch
+                            Type<span class="marker"></span></a>
+                    </li>
+                </ul><br>
+                <div class="category">
+                    <p>Indicators</p>
+                    <p>Geo Politics</p>
+                    <p>Global Markets</p>
+                </div>
+                <ul class="nav nav-tabs tabs-marker tabs-dark bg-dark mt-5" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" id="home" role="tab" aria-controls="home" aria-selected="true">Tags<span
+                                class="marker"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--  -->
+
+
+
+
+
+
+
+
+<!--  -->
+
+{% endblock %}

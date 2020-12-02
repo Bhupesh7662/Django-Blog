@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <title>Admin | Dashboard</title>
+  <!-- Favicon-->
+  <link rel="icon" href="{% static 'favicon/favilogo_3.png' %}" type="image/x-icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+    type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+  <!-- Bootstrap Core Css -->
+  <link href="{% static 'backend/plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+  <!-- Waves Effect Css -->
+  <link href="{% static 'backend/plugins/node-waves/waves.css' %}" rel="stylesheet" />
+  <!-- Animation Css -->
+  <link href="{% static 'backend/plugins/animate-css/animate.css' %}" rel="stylesheet" />
+  <!-- JQuery DataTable Css -->
+  <link href="{% static 'backend/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}"
+    rel="stylesheet">
+  <!-- Bootstrap Select Css -->
+  <link href="{% static 'backend/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+  <!-- Custom Css -->
+  <link href="{% static 'backend/css/dashboard.css' %}" rel="stylesheet">
+  <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+  <link href="{% static 'backend/css/themes/all-themes.css' %}" rel="stylesheet" />
+
+</head>
+
+<body class="theme-red ls-opened">
+  <!-- Top Bar -->
+  {% include 'comman/admin_header.html' %}
+  <!-- NavBar -->
+  {% include 'comman/admin_sidebar.html' %}
+  <!-- Main Content -->
+  {% block content %} {% endblock %}
+  <!-- Footer -->
+  {% include 'comman/admin_footer.html' %}
+
+</body>
+
+</html>
